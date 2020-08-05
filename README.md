@@ -9,7 +9,7 @@
 
 ```terrraform
 module "vpc_resource"{
-    source = "git::https://github.com/srijanone/terraform-modules.git//aws/vpc"
+    source = "git::https://github.com/foss-cafe/terraform-aws-vpc.git/"
     cidr_block = var.cidr_block
     instance_tenancy = var.instance_tenancy # Default is default
     additional_tags = var.additional_tags # Must be map(string)
