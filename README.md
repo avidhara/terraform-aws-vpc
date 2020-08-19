@@ -1,11 +1,7 @@
-# Terraform Module for VPC creation
+![Static security analysis for Terraform](https://github.com/foss-cafe/terraform-aws-vpc/workflows/Static%20security%20analysis%20for%20Terraform/badge.svg)
+# Terraform Module AWS VPC
 
-## Prerequisites
-
-- Terraform 0.12.x
-- aws cli
-
-### Use as a Module
+## Use as a Module
 
 ```terrraform
 module "vpc_resource"{
