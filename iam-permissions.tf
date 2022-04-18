@@ -1,6 +1,6 @@
 resource "aws_iam_role" "this" {
   count = local.create_iam_role
-  name  = format("%s-%s-VPCFlow-Lle", var.name, var.environment)
+  name  = format("%s-%s-VPCFlow-Logs", var.name, var.environment)
 
   assume_role_policy = <<POLICY
 {
@@ -24,9 +24,4 @@ POLICY
     },
     var.additional_tags
   )
-  lifecycle {
-    ignore_changes = [
-      tags,
-    ]
-  }
 }

@@ -1,28 +1,57 @@
 output "id" {
   description = " ID of the VPC"
-  value       = aws_vpc.this[0].id
-}
-output "owner_id" {
-  description = "The ID of the AWS account that owns the VPC"
-  value       = aws_vpc.this[0].owner_id
-}
-output "arn" {
-  description = "Amazon Resource Name (ARN) of VPC"
-  value       = aws_vpc.this[0].arn
-}
-output "default_network_acl_id" {
-  description = "The ID of the network ACL created by default on VPC creation"
-  value       = aws_vpc.this[0].default_network_acl_id
-}
-output "default_security_group_id" {
-  description = "The ID of the security group created by default on VPC creation"
-  value       = aws_vpc.this[0].default_security_group_id
-}
-output "default_route_table_id" {
-  description = "The ID of the route table created by default on VPC creation"
-  value       = aws_vpc.this[0].default_route_table_id
+  value       = try(aws_vpc.this[0].id, "")
 }
 
+output "owner_id" {
+  description = "The ID of the AWS account that owns the VPC"
+  value       = try(aws_vpc.this[0].owner_id, "")
+}
+
+output "arn" {
+  description = "Amazon Resource Name (ARN) of VPC"
+  value       = try(aws_vpc.this[0].arn, "")
+}
+
+output "instance_tenancy" {
+  description = "Tenancy of instances spin up within VPC."
+  value       = try(aws_vpc.this[0].instance_tenancy, "")
+}
+
+output "enable_dns_support" {
+  description = "Whether or not the VPC has DNS support"
+  value       = try(aws_vpc.this[0].enable_dns_support, "")
+}
+
+output "enable_dns_hostnames" {
+  description = "Whether or not the VPC has DNS hostname support"
+  value       = try(aws_vpc.this[0].enable_dns_hostnames, "")
+}
+
+output "enable_classiclink" {
+  description = " Whether or not the VPC has Classiclink enabled"
+  value       = try(aws_vpc.this[0].enable_classiclink, "")
+}
+
+output "main_route_table_id" {
+  description = "The ID of the main route table associated with this VPC. "
+  value       = try(aws_vpc.this[0].main_route_table_id, "")
+}
+
+output "default_network_acl_id" {
+  description = "The ID of the network ACL created by default on VPC creation"
+  value       = try(aws_vpc.this[0].default_network_acl_id, "")
+}
+
+output "default_security_group_id" {
+  description = "The ID of the security group created by default on VPC creation"
+  value       = try(aws_vpc.this[0].default_security_group_id, "")
+}
+
+output "default_route_table_id" {
+  description = "The ID of the route table created by default on VPC creation"
+  value       = try(aws_vpc.this[0].default_route_table_id, "")
+}
 
 ### Folwlogs 
 
@@ -32,5 +61,24 @@ output "log_group_arn" {
 }
 output "flow_log_id" {
   description = "The Flow Log ID"
-  value       = var.enable_flow_logs ? aws_flow_log.this[0].id : null
+  value       = var.enable_flow_logs ? try(aws_flow_log.this[0].id, "") : null
+}
+
+### Internete Gateway
+
+output "igw_id" {
+  description = "The ID of the Internet Gateway."
+  value       = try(aws_internet_gateway.this[0].id, "")
+}
+
+output "igw_arn" {
+  description = "The ID of the Internet Gateway."
+  value       = try(aws_internet_gateway.this[0].arn, "")
+}
+
+### IAM Role 
+
+output "igw_arn" {
+  description = "The ID of the Internet Gateway."
+  value       = try(aws_internet_gateway.this[0].arn, "")
 }
