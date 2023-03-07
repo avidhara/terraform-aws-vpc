@@ -1,6 +1,7 @@
 ![Static security analysis for Terraform](https://github.com/foss-cafe/terraform-aws-vpc/workflows/Static%20security%20analysis%20for%20Terraform/badge.svg)
 # Terraform Module AWS VPC
 
+
 ## Use as a Module
 
 ```terrraform
