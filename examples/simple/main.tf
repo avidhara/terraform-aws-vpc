@@ -4,14 +4,13 @@ provider "aws" {
 
 
 module "vpc_resource" {
-  source = "../../"
-  name   = "example"
-  cidr_block   = "10.0.0.0/16"
-  environment = "development"
+  source           = "../../"
+  name             = "example"
+  cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
-  create_igw = true
-  additional_tags  = {
-    Owner       = "devops"
+  create_igw       = true
+  tags = {
+    Owner            = "devops"
     CostAllocationID = "1234"
   }
 }

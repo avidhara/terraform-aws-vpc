@@ -1,6 +1,8 @@
   
 name: Static security analysis for Terraform
 
+permissions: read-all
+
 on:
   push:
     branches:

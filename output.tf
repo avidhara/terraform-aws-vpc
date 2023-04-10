@@ -13,26 +13,6 @@ output "arn" {
   value       = try(aws_vpc.this[0].arn, "")
 }
 
-output "instance_tenancy" {
-  description = "Tenancy of instances spin up within VPC."
-  value       = try(aws_vpc.this[0].instance_tenancy, "")
-}
-
-output "enable_dns_support" {
-  description = "Whether or not the VPC has DNS support"
-  value       = try(aws_vpc.this[0].enable_dns_support, "")
-}
-
-output "enable_dns_hostnames" {
-  description = "Whether or not the VPC has DNS hostname support"
-  value       = try(aws_vpc.this[0].enable_dns_hostnames, "")
-}
-
-output "enable_classiclink" {
-  description = " Whether or not the VPC has Classiclink enabled"
-  value       = try(aws_vpc.this[0].enable_classiclink, "")
-}
-
 output "main_route_table_id" {
   description = "The ID of the main route table associated with this VPC. "
   value       = try(aws_vpc.this[0].main_route_table_id, "")
@@ -70,13 +50,6 @@ output "igw_id" {
   description = "The ID of the Internet Gateway."
   value       = try(aws_internet_gateway.this[0].id, "")
 }
-
-output "igw_arn" {
-  description = "The ID of the Internet Gateway."
-  value       = try(aws_internet_gateway.this[0].arn, "")
-}
-
-### IAM Role 
 
 output "igw_arn" {
   description = "The ID of the Internet Gateway."

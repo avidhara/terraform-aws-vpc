@@ -1,6 +1,7 @@
 resource "aws_iam_role" "this" {
   count = local.create_iam_role
-  name  = format("%s-%s-VPCFlow-Logs", var.name, var.environment)
+
+  name = format("%s-%s-VPCFlow-Logs", var.name)
 
   assume_role_policy = <<POLICY
 {
@@ -17,11 +18,6 @@ resource "aws_iam_role" "this" {
   ]
 }
 POLICY
-  tags = merge(
-    {
-      "Name"        = format("%s-%s", var.name, var.environment)
-      "Environment" = format("%s", var.environment)
-    },
-    var.additional_tags
-  )
+
+  tags = var.tags
 }

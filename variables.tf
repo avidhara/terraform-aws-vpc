@@ -76,6 +76,13 @@ variable "enable_dns_support" {
   description = "Should be true to enable DNS support in the VPC"
   default     = true
 }
+
+variable "enable_network_address_usage_metrics" {
+  type        = bool
+  description = "(Optional) Indicates whether Network Address Usage metrics are enabled for your VPC. Defaults to false."
+  default     = false
+}
+
 variable "enable_dns_hostnames" {
   type        = bool
   description = "Should be true to enable DNS hostnames in the VPC"
@@ -88,12 +95,7 @@ variable "assign_generated_ipv6_cidr_block" {
   default     = false
 }
 
-variable "environment" {
-  type        = string
-  description = "Environment in tags to identidy"
-  default     = "Dev"
-}
-variable "additional_tags" {
+variable "tags" {
   type        = map(string)
   description = "Additional Tags to aws resources"
   default     = {}
@@ -145,6 +147,12 @@ variable "traffic_type" {
   default     = "ALL"
 }
 
+variable "deliver_cross_account_role" {
+  type        = string
+  description = "(Optional) ARN of the IAM role that allows Amazon EC2 to publish flow logs across accounts."
+  default     = null
+}
+
 variable "eni_id" {
   type        = string
   description = "(Optional) Elastic Network Interface ID to attach to"
@@ -175,6 +183,18 @@ variable "subnet_id" {
   default     = null
 }
 
+variable "transit_gateway_id" {
+  type        = string
+  description = " (Optional) Transit Gateway ID to attach to"
+  default     = null
+}
+
+variable "transit_gateway_attachment_id" {
+  type        = string
+  description = "(Optional) Transit Gateway Attachment ID to attach to"
+  default     = null
+}
+
 variable "log_format" {
   type        = string
   description = "The fields to include in the flow log record, in the order in which they should appear."
@@ -200,6 +220,12 @@ variable "log_retention_in_days" {
   type        = number
   description = "Specifies the number of days you want to retain log events in the specified log group"
   default     = 90
+}
+
+variable "skip_destroy" {
+  type        = bool
+  description = "(Optional) Set to true if you do not wish the log group (and any logs it may contain) to be deleted at destroy time, and instead just remove the log group from the Terraform state."
+  default     = false
 }
 
 variable "kms_key_id" {
