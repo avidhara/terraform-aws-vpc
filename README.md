@@ -4,12 +4,10 @@
 
 ## Use as a Module
 
-```terrraform
-module "vpc_resource"{
-    source = "git::https://github.com/foss-cafe/terraform-aws-vpc.git/"
-    cidr_block = var.cidr_block
-    instance_tenancy = var.instance_tenancy # Default is default
-    additional_tags = var.additional_tags # Must be map(string)
+```hcl
+module "vpc" {
+  source  = "ionicloud/vpc/aws"
+  cidr_block = "10.10.0.0/16"
 }
 ```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
@@ -49,15 +47,13 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_assign_generated_ipv6_cidr_block"></a> [assign\_generated\_ipv6\_cidr\_block](#input\_assign\_generated\_ipv6\_cidr\_block) | Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC | `bool` | `false` | no |
-| <a name="input_cidr_block"></a> [cidr\_block](#input\_cidr\_block) | The CIDR block for the VPC. Default value is a valid CIDR, but not acceptable by AWS and should be overridden | `string` | `"192.168.0.0/16"` | no |
+| <a name="input_cidr_block"></a> [cidr\_block](#input\_cidr\_block) | (Required) The IPv4 CIDR block for the VPC. | `string` | n/a | yes |
 | <a name="input_create_igw"></a> [create\_igw](#input\_create\_igw) | Do you want to Create Internet Gateway | `bool` | `true` | no |
 | <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | Controls if VPC should be created (it affects almost all resources) | `bool` | `true` | no |
 | <a name="input_deliver_cross_account_role"></a> [deliver\_cross\_account\_role](#input\_deliver\_cross\_account\_role) | (Optional) ARN of the IAM role that allows Amazon EC2 to publish flow logs across accounts. | `string` | `null` | no |
 | <a name="input_destination_options"></a> [destination\_options](#input\_destination\_options) | (Optional) Describes the destination options for a flow log. More details below. | `any` | `[]` | no |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | suffix domain name to use by default when resolving non Fully Qualified Domain Names | `string` | `"ec2.internal"` | no |
 | <a name="input_domain_name_servers"></a> [domain\_name\_servers](#input\_domain\_name\_servers) | ist of name servers to configure in /etc/resolv.conf | `list(string)` | <pre>[<br>  "AmazonProvidedDNS"<br>]</pre> | no |
-| <a name="input_enable_classiclink"></a> [enable\_classiclink](#input\_enable\_classiclink) | (Optional) A boolean flag to enable/disable ClassicLink for the VPC. Only valid in regions and accounts that support EC2 Classic. See the ClassicLink documentation for more information. Defaults false. | `bool` | `false` | no |
-| <a name="input_enable_classiclink_dns_support"></a> [enable\_classiclink\_dns\_support](#input\_enable\_classiclink\_dns\_support) | (Optional) A boolean flag to enable/disable ClassicLink DNS Support for the VPC. Only valid in regions and accounts that support EC2 Classic. | `string` | `null` | no |
 | <a name="input_enable_dns_hostnames"></a> [enable\_dns\_hostnames](#input\_enable\_dns\_hostnames) | Should be true to enable DNS hostnames in the VPC | `bool` | `false` | no |
 | <a name="input_enable_dns_support"></a> [enable\_dns\_support](#input\_enable\_dns\_support) | Should be true to enable DNS support in the VPC | `bool` | `true` | no |
 | <a name="input_enable_flow_logs"></a> [enable\_flow\_logs](#input\_enable\_flow\_logs) | Do you want to enable vpc flow logs | `bool` | `true` | no |

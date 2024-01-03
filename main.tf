@@ -14,8 +14,6 @@ resource "aws_vpc" "this" {
   enable_network_address_usage_metrics = var.enable_network_address_usage_metrics
   enable_dns_hostnames                 = var.enable_dns_hostnames
 
-  enable_classiclink               = var.enable_classiclink
-  enable_classiclink_dns_support   = var.enable_classiclink_dns_support
   assign_generated_ipv6_cidr_block = var.assign_generated_ipv6_cidr_block
 
 

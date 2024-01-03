@@ -13,8 +13,7 @@ variable "name" {
 
 variable "cidr_block" {
   type        = string
-  description = "The CIDR block for the VPC. Default value is a valid CIDR, but not acceptable by AWS and should be overridden"
-  default     = "192.168.0.0/16"
+  description = "(Required) The IPv4 CIDR block for the VPC."
 }
 
 variable "instance_tenancy" {
@@ -56,18 +55,6 @@ variable "ipv6_netmask_length" {
 variable "ipv6_cidr_block_network_border_group" {
   type        = string
   description = "(Optional) By default when an IPv6 CIDR is assigned to a VPC a default ipv6_cidr_block_network_border_group will be set to the region of the VPC. This can be changed to restrict advertisement of public addresses to specific Network Border Groups such as LocalZones."
-  default     = null
-}
-
-variable "enable_classiclink" {
-  type        = bool
-  description = "(Optional) A boolean flag to enable/disable ClassicLink for the VPC. Only valid in regions and accounts that support EC2 Classic. See the ClassicLink documentation for more information. Defaults false."
-  default     = false
-}
-
-variable "enable_classiclink_dns_support" {
-  type        = string
-  description = "(Optional) A boolean flag to enable/disable ClassicLink DNS Support for the VPC. Only valid in regions and accounts that support EC2 Classic."
   default     = null
 }
 
